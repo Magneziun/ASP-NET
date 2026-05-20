@@ -1,0 +1,13 @@
+﻿@using Dz_1.Models
+@model PersonInfo
+
+@{
+    ViewData["Title"] = "о себе";
+}
+
+<h2>Информация о себе</h2>
+<p><strong>Имя:</strong> @Model.FirstName</p>
+<p><strong>Фамилия:</strong> @Model.LastName</p>
+<p><strong>Возраст:</strong> @Model.Age</p>
+<p><strong>Карточка:</strong> @Model.CardNumber</p>
+
