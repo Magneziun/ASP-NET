@@ -1,0 +1,212 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Lesson2.Model.Meme
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+            body {
+                background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+                min-height: 100vh;
+                padding: 40px 0;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            }
+
+            .mem-detail-card {
+                max-width: 800px;
+                margin: 0 auto;
+                border: none;
+                border-radius: 24px;
+                overflow: hidden;
+                box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                background-color: #1e1e2f;
+            }
+
+                .mem-detail-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.6);
+                }
+
+            .mem-image-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #0a0a12;
+                min-height: 400px;
+                padding: 20px;
+            }
+
+            .mem-image {
+                max-width: 100%;
+                max-height: 500px;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                transition: transform 0.3s ease;
+                border-radius: 12px;
+            }
+
+                .mem-image:hover {
+                    transform: scale(1.02);
+                }
+
+            .mem-info {
+                padding: 30px;
+            }
+
+            .mem-name {
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: #ffffff;
+                margin-bottom: 20px;
+                border-left: 4px solid #b77aff;
+                padding-left: 15px;
+                letter-spacing: -0.3px;
+            }
+
+            .info-section {
+                margin-bottom: 25px;
+                padding: 18px;
+                background: #2a2a3b;
+                border-radius: 16px;
+                transition: background 0.2s;
+            }
+
+            .info-label {
+                font-weight: bold;
+                color: #b77aff;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                margin-bottom: 8px;
+            }
+
+            .info-value {
+                font-size: 1.1rem;
+                color: #e4e4e7;
+                line-height: 1.6;
+            }
+
+            .age-badge {
+                display: inline-block;
+                background: linear-gradient(135deg, #b77aff, #8b5cf6);
+                color: white;
+                padding: 5px 18px;
+                border-radius: 40px;
+                font-weight: bold;
+                font-size: 1rem;
+                box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+            }
+
+            .action-buttons {
+                display: flex;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .btn-custom {
+                flex: 1;
+                padding: 12px;
+                border-radius: 40px;
+                font-weight: bold;
+                transition: all 0.25s ease;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn-back {
+                background: #3a3a4e;
+                color: #f0f0f0;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+                .btn-back:hover {
+                    background: #4c4c66;
+                    transform: translateY(-2px);
+                    color: white;
+                    text-decoration: none;
+                }
+
+            .btn-adopt {
+                background: linear-gradient(135deg, #b77aff, #8b5cf6);
+                color: white;
+                border: none;
+            }
+
+                .btn-adopt:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.5);
+                    background: linear-gradient(135deg, #c389ff, #9b6eff);
+                }
+
+            .features-list {
+                list-style: none;
+                padding: 0;
+            }
+
+                .features-list li {
+                    padding: 8px 0;
+                    border-bottom: 1px solid #3a3a4e;
+                    color: #d1d1d6;
+                }
+
+                    .features-list li:last-child {
+                        border-bottom: none;
+                    }
+
+            .feature-icon {
+                margin-right: 10px;
+                filter: brightness(0.8) invert(0.8);
+            }
+
+            .mem-info a:not(.btn-custom) {
+                display: inline-block;
+                margin-top: 20px;
+                color: #b77aff;
+                text-decoration: none;
+                font-weight: 500;
+                transition: 0.2s;
+            }
+
+                .mem-info a:not(.btn-custom):hover {
+                    color: #d9a7ff;
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mem-detail-card">
+            <div class="mem-image-container">
+                <img class="mem-image" src="@Model.PhotoSrc" alt="@Model.Name">
+            </div>
+
+            <div class="mem-info">
+                <h1 class="mem-name">@Model.Name</h1>
+
+                <div class="info-section">
+                    <div class="info-label">Рейтинг</div>
+                    <div class="info-value">
+                        <span class="age-badge">@Model.Rating</span>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">Описание</div>
+                    <div class="info-value">@Model.Description</div>
+                </div>
+
+                <a asp-controller="Home" asp-action="Index">Назад</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
