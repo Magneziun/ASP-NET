@@ -1,27 +1,27 @@
-using Lesson2.Repositories;
+using Lesson2.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lesson2.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly CatRepository _catRepository;
-    public HomeController()
+    private readonly IMemeRepository _memeRepository;
+
+    // Dependency Injection через конструктор
+    public HomeController(IMemeRepository memeRepository)
     {
-        _catRepository = new CatRepository();
+        _memeRepository = memeRepository;
     }
 
     public IActionResult Index()
     {
-        var memes = _catRepository.Get();
-
+        var memes = _memeRepository.Get();
         return View(memes);
     }
 
     public IActionResult Details(int id)
     {
-        var meme = _catRepository.GetById(id);
-
+        var meme = _memeRepository.GetById(id);
         return View(meme);
     }
 }

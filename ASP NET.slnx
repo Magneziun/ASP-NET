@@ -1,4 +1,5 @@
 <Solution>
+  <Folder Name="/dz3/" />
   <Project Path="Dz 1/Dz 1.csproj" />
   <Project Path="Dz 2/Dz 2.csproj" />
 </Solution>

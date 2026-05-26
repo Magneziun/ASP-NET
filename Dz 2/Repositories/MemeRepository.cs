@@ -1,12 +1,13 @@
 ﻿using Lesson2.Model;
+using Lesson2.Repositories.Interfaces;
 
 namespace Lesson2.Repositories;
 
-public class CatRepository
+public class MemeRepository : IMemeRepository
 {
     private List<Meme> _memes;
 
-    public CatRepository()
+    public MemeRepository()
     {
         _memes = new List<Meme>
         {
@@ -25,13 +26,6 @@ public class CatRepository
         };
     }
 
-    public List<Meme> Get()
-    {
-        return _memes;
-    }
-
-    public Meme GetById(int id)
-    {
-        return _memes.First(x => x.Id == id);
-    }
+    public List<Meme> Get() => _memes;
+    public Meme GetById(int id) => _memes.First(x => x.Id == id);
 }
