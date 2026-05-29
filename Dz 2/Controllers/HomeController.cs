@@ -7,7 +7,6 @@ public class HomeController : Controller
 {
     private readonly IMemeRepository _memeRepository;
 
-    // Dependency Injection через конструктор
     public HomeController(IMemeRepository memeRepository)
     {
         _memeRepository = memeRepository;
@@ -23,5 +22,11 @@ public class HomeController : Controller
     {
         var meme = _memeRepository.GetById(id);
         return View(meme);
+    }
+
+    // Добавленный метод для страницы Контакты
+    public IActionResult Contact()
+    {
+        return View();
     }
 }
